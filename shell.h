@@ -14,5 +14,6 @@
 
 extern char **environ;
 void variableHandler(char **argv);
+char *getFullPath(char *command)
 
 #endif
