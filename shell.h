@@ -14,6 +14,9 @@
 
 extern char **environ;
 void variableHandler(char **argv);
-char *getFullPath(char *command)
+char *getFullPath(char *command);
+int main(int ac, char **argv);
+void variableHandler(char **argv);
+void runcommand(char **argv);
 
 #endif
