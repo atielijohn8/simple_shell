@@ -38,4 +38,11 @@ void run_Cmd(char **av);
  */
 int stat(const char *pathname, struct stat *statbuf);
 
+/**
+ * variableHandler - Handle variables
+ * @av: array of strings representing cmd and its arguments
+ */
+void variableHandler(char **av);
+
+
 #endif
