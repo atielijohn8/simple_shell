@@ -13,10 +13,11 @@
 #include <sys/types.h>
 
 extern char **environ;
-void variableHandler(char **argv);
-char *getFullPath(char *command);
-int main(int ac, char **argv);
-void variableHandler(char **argv);
-void runcommand(char **argv);
+
+void variableHandler(char **av);
+char* getPath(char* command);
+void runCommand(char **av);
+int stat(const char *pathname, struct stat *statbuf);
+
 
 #endif

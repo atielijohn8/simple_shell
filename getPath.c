@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * getFullPath - Retrieves the full path of a command
+ * getPath - Retrieves the full path of a command
  * @command: the command of whose path is sought
  * Description: Find the path os a given command
  * This function attempts to locate  full path of a given command by searching
@@ -11,7 +11,7 @@
  * Return:string representing the full path of the command if found
  */
 
-char *getFullPath(char *command)
+char *getPath(char *command)
 {
 	char *command_path;/*ptr to character array(char*) storing environment variable*/
 	char *path_duplicate;/*another ptr to character array used to create duplicate variable of command_path*/

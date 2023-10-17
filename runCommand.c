@@ -2,13 +2,13 @@
 
 /**
  * runCommand - Runs the provided command
- * @argv: arguement vector array
+ * @av: arguement vector array
  * Description: The executor takes and array of commands
  * and executes them
  * Return: The void
  */
 
-void runCommand(char **argv)
+void runCommand(char **av)
 {
 	char *command = NULL;
 	char *finalCommand = NULL;
@@ -17,9 +17,9 @@ void runCommand(char **argv)
 	char *workingDir;
 	char exitCode[10];
 
-	if (argv)
+	if (av)
 	{
-		command = argv[0];
+		command = av[0];
 
 		if (command[0] == '#')
 		{
@@ -28,9 +28,9 @@ void runCommand(char **argv)
 
 		if (strcmp(command, "cd") == 0)
 		{
-			if (argv[1])
+			if (av[1])
 			{
-				if (strcmp(argv[1], "-") == 0)
+				if (strcmp(av[1], "-") == 0)
 				{
 					if (chdir(getenv("OLDPWD")) == -1)
 					{
@@ -39,7 +39,7 @@ void runCommand(char **argv)
 				}
 				else
 				{
-					if (chdir(argv[1]) == -1)
+					if (chdir(av[1]) == -1)
 					{
 						perror("Error:");
 					}
@@ -61,9 +61,9 @@ void runCommand(char **argv)
 		}
 		else if (strcmp(command, "exit") == 0)
 		{
-			if (argv[1])
+			if (av[1])
 			{
-				int exitStatus = atoi(argv[1]);
+				int exitStatus = atoi(av[1]);
 				exit(exitStatus);
 			}
 			else
@@ -82,9 +82,9 @@ void runCommand(char **argv)
 		}
 		else if (strcmp(command, "setenv") == 0)
 		{
-			if (argv[1] && argv[2])
+			if (av[1] && av[2])
 			{
-				if (setenv(argv[1], argv[2], 1) == -1)
+				if (setenv(av[1], av[2], 1) == -1)
 				{
 					perror("Error:");
 				}
@@ -97,9 +97,9 @@ void runCommand(char **argv)
 		}
 		else if (strcmp(command, "unsetenv") == 0)
 		{
-			if (argv[1])
+			if (av[1])
 			{
-				if (unsetenv(argv[1]) == -1)
+				if (unsetenv(av[1]) == -1)
 				{
 					perror("Error:");
 				}
@@ -112,7 +112,7 @@ void runCommand(char **argv)
 		}
 		else
 		{
-			variableHandler(argv);
+			variableHandler(av);
 			finalCommand = getPath(command);
 			childProcess = fork();
 			if (childProcess == -1)
@@ -121,9 +121,9 @@ void runCommand(char **argv)
 			}
 			if (childProcess == 0)
 			{
-				if (execve(finalCommand, argv, NULL) == -1)
+				if (execve(finalCommand, av, NULL) == -1)
 				{
-					printf("%s: No such file or directory\n", argv[0]);
+					printf("%s: No such file or directory\n", av[0]);
 				}
 			}
 			else
