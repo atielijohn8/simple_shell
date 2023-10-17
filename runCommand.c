@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * runCommand - Runs the provided command
