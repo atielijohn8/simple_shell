@@ -36,7 +36,7 @@ int main(int ac, char **av)
 		}
 		/*reading user input using stdin*/
 		char_Read = getline(&cmd_Litera, &numOfChars, stdin);
-		
+
 		/*error handling*/
 		if (char_Read == -1)
 		{
