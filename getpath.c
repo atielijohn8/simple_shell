@@ -7,7 +7,7 @@
  * This function attempts to locate  full path of a given command by searching
  * through the directories listed in the PATH environment variable If successful
  * it returns a string containing the full path If the command is not found it will return
- * 
+ *
  * Return:string representing the full path of the command if found
  */
 
@@ -22,7 +22,7 @@ char *get_Path(char *command)
 	struct stat buffer;/*structure used for file information*/
 
 	command_path = getenv("PATH");/*retrieves the value of the PATH environment variable and stores it in command_path*/
-	
+
 	/*checks if command path exists*/
 	if (command_path)
 	{
@@ -45,7 +45,7 @@ char *get_Path(char *command)
 			strcat(file_path, "\0");
 
 			/*This checks if the file exists using stat()*/
-            if (stat(file_path, &buffer) == 0)		
+			if (stat(file_path, &buffer) == 0)
 			{
 				free(path_duplicate);
 				return (file_path);
@@ -59,7 +59,7 @@ char *get_Path(char *command)
 
 		free(path_duplicate);
 
-		/*checks if the command is an absolute path (i.e., it starts with /)*/	
+		/*checks if the command is an absolute path (i.e., it starts with /)*/
 		if (stat(command, &buffer) == 0)
 		{
 			return (strdup(command));

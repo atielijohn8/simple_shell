@@ -4,7 +4,7 @@
  * variableHandler - subsitute varibes with their values
  * @av: array of varibes  command
  * Description: fill the varibales with actual commands
- * Return:void 
+ * Return:void
  */
 
 void variableHandler(char **av)
