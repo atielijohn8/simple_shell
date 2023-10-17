@@ -2,7 +2,7 @@
 
 /**
  * main - program entry point
- * @ac: arguement count
+ * @ac: arguement count number
  * @av: arguement vector of commands
  * Description: this is the core logic of the program
  * Return: status or exit code
@@ -10,32 +10,32 @@
 
 int main(int ac, char **av)
 {
-	char *prompt_text = "kennedy_shell:$ ";
+	char *prompt_text = "luken_shell:$ ";
 	char *cmd_Litera = NULL;
 	char *cmdLiteralDuplicate = NULL;
-	size_t numOfChars = 0;/*interger storing number of tokens in the input*/
+	size_t Numof_Char = 0;/*interger storing number of tokens in the input*/
 	ssize_t char_Read;
 	const char *delimiter = " \n";
-	int numOfTokens = 0;
+	int Num_of_tokens = 0;
 	char *token;
 	int i;
-	int interactive;
+	int Responsive;
 
 	/*this line ignores ac*/
 	(void)ac;
 
-	/*checks if the program is running interactive mode by using isatty function*/
-	interactive = isatty(STDIN_FILENO);
+	/*checks if the program is running Responsive mode by using isatty function*/
+	Responsive = isatty(STDIN_FILENO);
 
 	/*creating infinite loop(input and process)*/
 	while (1)
 	{
-		if (interactive)
+		if (Responsive)
 		{
 			printf("%s", prompt_text);
 		}
 		/*reading user input using stdin*/
-		char_Read = getline(&cmd_Litera, &numOfChars, stdin);
+		char_Read = getline(&cmd_Litera, &Numof_Char, stdin);
 
 		/*error handling*/
 		if (char_Read == -1)
@@ -64,12 +64,12 @@ int main(int ac, char **av)
 
 		while (token != NULL)
 		{
-			numOfTokens++;
+			Num_of_tokens++;
 			token = strtok(NULL, delimiter);
 		}
 
-		numOfTokens++;
-		av = malloc(sizeof(char *) * numOfTokens);
+		Num_of_tokens++;
+		av = malloc(sizeof(char *) * Num_of_tokens);
 		token = strtok(cmdLiteralDuplicate, delimiter);
 
 		for (i = 0; token != NULL; i++)
@@ -79,9 +79,9 @@ int main(int ac, char **av)
 			token = strtok(NULL, delimiter);
 		}
 		av[i] = NULL;
-		runCommand(av);
+		run_Cmd(av);
 
-		for (i = 0; i < numOfTokens - 1; i++)
+		for (i = 0; i < Num_of_tokens - 1; i++)
 		{
 			free(av[i]);
 		}
@@ -90,12 +90,13 @@ int main(int ac, char **av)
 		free(cmdLiteralDuplicate);
 		free(cmd_Litera);
 		cmd_Litera = NULL;
-		numOfTokens = 0;
+		Num_of_tokens = 0;
 
-		if (!interactive)
+		if (!Responsive)
 		{
 			return (0);
 		}
 	}
 	return (0);
 }
+
