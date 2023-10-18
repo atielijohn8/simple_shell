@@ -43,6 +43,11 @@ int stat(const char *pathname, struct stat *statbuf);
  * @av: array of strings representing cmd and its arguments
  */
 void variableHandler(char **av);
+/* 1 if using system getline() */
+#define USE_GETLINE 0
+#define USE_STRTOK 0
 
+#define HIST_FILE	".simple_shell_history"
+#define HIST_MAX	4096
 
 #endif
