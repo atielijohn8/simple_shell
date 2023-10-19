@@ -7,9 +7,9 @@
  *        constant function prototype.
  *  Return: Always 0
  */
-int _jmshhistory(strinput_array_gen*info)
+int _myhistory(info_t *info)
 {
-	PrintList(info->history);
+	print_list(info->history);
 	return (0);
 }
 
@@ -20,7 +20,7 @@ int _jmshhistory(strinput_array_gen*info)
  *
  * Return: Always 0 on success, 1 on error
  */
-int unset_alias(strinput_array_gen*info, char *str)
+int unset_alias(info_t *info, char *str)
 {
 	char *p, c;
 	int ret;
@@ -30,8 +30,8 @@ int unset_alias(strinput_array_gen*info, char *str)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = DeleteNodeAtIndex(&(info->alias),
-		getNodeIndex(info->alias, node_starts_with(info->alias, str, -1)));
+	ret = delete_node_at_index(&(info->alias),
+		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 	*p = c;
 	return (ret);
 }
@@ -43,7 +43,7 @@ int unset_alias(strinput_array_gen*info, char *str)
  *
  * Return: Always 0 on success, 1 on error
  */
-int set_alias(strinput_array_gen*info, char *str)
+int set_alias(info_t *info, char *str)
 {
 	char *p;
 
@@ -86,7 +86,7 @@ int print_alias(list_t *node)
  *          constant function prototype.
  *  Return: Always 0
  */
-int _jmshalias(strinput_array_gen*info)
+int _myalias(info_t *info)
 {
 	int i = 0;
 	char *p = NULL;

@@ -2,43 +2,43 @@
 
 /**
  * main - entry point
+ * @ac: arg count
+ * @av: arg vector
  *
- * Return: 0 on success, 1 on error.
+ * Return: 0 on success, 1 on error
  */
-int main(int arguement_count, char **arguement_vector)
+int main(int ac, char **av)
 {
-	strinput_array_gen info[] = { INITIALIZTION_DATA };
-	int file_descriptor = 2;
-	
-//**this is assembly code used in interacting with hardware directly*/
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
 		"add $3, %0"
-		: "=r" (file_descriptor)
-		: "r" (file_descriptor));
+		: "=r" (fd)
+		: "r" (fd));
 
-	if (arguement_count == 2)
+	if (ac == 2)
 	{
-		file_descriptor = open(arguement_vector[1], O_RDONLY);
-		if (file_descriptor == -1)
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
 		{
-			if (error_number == EACCES)
+			if (errno == EACCES)
 				exit(126);
-			if (error_number == ENOENT)
+			if (errno == ENOENT)
 			{
-				_inputStrPrint(arguement_vector[0]);
-				_inputStrPrint(": 0: Can't open ");
-				_inputStrPrint(arguement_vector[1]);
-				_writechar('\n');
-				_writechar(BUFFERFLUSH);
+				_eputs(av[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(av[1]);
+				_eputchar('\n');
+				_eputchar(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfile_descriptor = file_descriptor;
+		info->readfd = fd;
 	}
-	environ_linked_list_popul(info);
-	FileHistory(info);
-	main_shell_loop(info, arguement_vector);
+	populate_env_list(info);
+	read_history(info);
+	hsh(info, av);
 	return (EXIT_SUCCESS);
 }

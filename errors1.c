@@ -6,7 +6,7 @@
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
-int _errorAlphaToInterger(char *s)
+int _erratoi(char *s)
 {
 	int i = 0;
 	unsigned long int result = 0;
@@ -35,32 +35,32 @@ int _errorAlphaToInterger(char *s)
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
  */
-void PrintError(strinput_array_gen*info, char *estr)
+void print_error(info_t *info, char *estr)
 {
-	_inputStrPrint(info->fname);
-	_inputStrPrint(": ");
-	printDec(info->line_count, STDERR_FILENO);
-	_inputStrPrint(": ");
-	_inputStrPrint(info->argv[0]);
-	_inputStrPrint(": ");
-	_inputStrPrint(estr);
+	_eputs(info->fname);
+	_eputs(": ");
+	print_d(info->line_count, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(info->argv[0]);
+	_eputs(": ");
+	_eputs(estr);
 }
 
 /**
  * print_d - function prints a decimal (integer) number (base 10)
  * @input: the input
- * @file_descriptor: the filedescriptor to write to
+ * @fd: the filedescriptor to write to
  *
- * Return: number of chararguement_countters printed
+ * Return: number of characters printed
  */
-int printDec(int input, int file_descriptor)
+int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
 	unsigned int _abs_, current;
 
-	if (file_descriptor == STDERR_FILENO)
-		__putchar = _writechar;
+	if (fd == STDERR_FILENO)
+		__putchar = _eputchar;
 	if (input < 0)
 	{
 		_abs_ = -input;
@@ -93,7 +93,7 @@ int printDec(int input, int file_descriptor)
  *
  * Return: string
  */
-char *cvrt_no(long int num, int base, int flags)
+char *convert_number(long int num, int base, int flags)
 {
 	static char *array;
 	static char buffer[50];
@@ -122,12 +122,12 @@ char *cvrt_no(long int num, int base, int flags)
 }
 
 /**
- * remove_comments - function switchs first instance of '#' with '\0'
+ * remove_comments - function replaces first instance of '#' with '\0'
  * @buf: address of the string to modify
  *
  * Return: Always 0;
  */
-void rmv_comments(char *buf)
+void remove_comments(char *buf)
 {
 	int i;
 

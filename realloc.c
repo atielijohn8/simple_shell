@@ -7,7 +7,7 @@
  *@n: the amount of bytes to be filled
  *Return: (s) a pointer to the memory area s
  */
-char **memory_set(char *s, char b, unsigned int n)
+char *_memset(char *s, char b, unsigned int n)
 {
 	unsigned int i;
 
@@ -20,7 +20,7 @@ char **memory_set(char *s, char b, unsigned int n)
  * ffree - frees a string of strings
  * @pp: string of strings
  */
-void free_fd(char **pp)
+void ffree(char **pp)
 {
 	char **a = pp;
 

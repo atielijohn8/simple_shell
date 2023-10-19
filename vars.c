@@ -8,7 +8,7 @@
  *
  * Return: 1 if chain delimeter, 0 otherwise
  */
-int is_chain(strinput_array_gen*info, char *buf, size_t *p)
+int is_chain(info_t *info, char *buf, size_t *p)
 {
 	size_t j = *p;
 
@@ -26,7 +26,7 @@ int is_chain(strinput_array_gen*info, char *buf, size_t *p)
 	}
 	else if (buf[j] == ';') /* found end of this command */
 	{
-		buf[j] = 0; /* switch semicolon with null */
+		buf[j] = 0; /* replace semicolon with null */
 		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
@@ -45,7 +45,7 @@ int is_chain(strinput_array_gen*info, char *buf, size_t *p)
  *
  * Return: Void
  */
-void check_chain(strinput_array_gen*info, char *buf, size_t *p, size_t i, size_t len)
+void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
 	size_t j = *p;
 
@@ -70,12 +70,12 @@ void check_chain(strinput_array_gen*info, char *buf, size_t *p, size_t i, size_t
 }
 
 /**
- * switch_alias - switchs an aliases in the tokenized string
+ * replace_alias - replaces an aliases in the tokenized string
  * @info: the parameter struct
  *
- * Return: 1 if switchd, 0 otherwise
+ * Return: 1 if replaced, 0 otherwise
  */
-int switch_alias(strinput_array_gen*info)
+int replace_alias(info_t *info)
 {
 	int i;
 	list_t *node;
@@ -99,12 +99,12 @@ int switch_alias(strinput_array_gen*info)
 }
 
 /**
- * switch_vars - switchs vars in the tokenized string
+ * replace_vars - replaces vars in the tokenized string
  * @info: the parameter struct
  *
- * Return: 1 if switchd, 0 otherwise
+ * Return: 1 if replaced, 0 otherwise
  */
-int switch_vars(strinput_array_gen*info)
+int replace_vars(info_t *info)
 {
 	int i = 0;
 	list_t *node;
@@ -114,39 +114,39 @@ int switch_vars(strinput_array_gen*info)
 		if (info->argv[i][0] != '$' || !info->argv[i][1])
 			continue;
 
-		if (!_strcomparision(info->argv[i], "$?"))
+		if (!_strcmp(info->argv[i], "$?"))
 		{
-			switch_string(&(info->argv[i]),
+			replace_string(&(info->argv[i]),
 				_strdup(convert_number(info->status, 10, 0)));
 			continue;
 		}
-		if (!_strcomparision(info->argv[i], "$$"))
+		if (!_strcmp(info->argv[i], "$$"))
 		{
-			switch_string(&(info->argv[i]),
+			replace_string(&(info->argv[i]),
 				_strdup(convert_number(getpid(), 10, 0)));
 			continue;
 		}
 		node = node_starts_with(info->env, &info->argv[i][1], '=');
 		if (node)
 		{
-			switch_string(&(info->argv[i]),
+			replace_string(&(info->argv[i]),
 				_strdup(_strchr(node->str, '=') + 1));
 			continue;
 		}
-		switch_string(&info->argv[i], _strdup(""));
+		replace_string(&info->argv[i], _strdup(""));
 
 	}
 	return (0);
 }
 
 /**
- * switch_string - switchs string
+ * replace_string - replaces string
  * @old: address of old string
  * @new: new string
  *
- * Return: 1 if switchd, 0 otherwise
+ * Return: 1 if replaced, 0 otherwise
  */
-int switch_string(char **old, char *new)
+int replace_string(char **old, char *new)
 {
 	free(*old);
 	*old = new;

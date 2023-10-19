@@ -6,7 +6,7 @@
  *
  * Return: size of list
  */
-size_t listLength(const list_t *h)
+size_t list_len(const list_t *h)
 {
 	size_t i = 0;
 
@@ -24,10 +24,10 @@ size_t listLength(const list_t *h)
  *
  * Return: array of strings
  */
-char**ListToStrings(list_t *head)
+char **list_to_strings(list_t *head)
 {
 	list_t *node = head;
-	size_t i = listLength(head), j;
+	size_t i = list_len(head), j;
 	char **strs;
 	char *str;
 
@@ -38,7 +38,7 @@ char**ListToStrings(list_t *head)
 		return (NULL);
 	for (i = 0; node; node = node->next, i++)
 	{
-		str = malloc(_stringlength(node->str) + 1);
+		str = malloc(_strlen(node->str) + 1);
 		if (!str)
 		{
 			for (j = 0; j < i; j++)
@@ -61,7 +61,7 @@ char**ListToStrings(list_t *head)
  *
  * Return: size of list
  */
-size_t PrintList(const list_t *h)
+size_t print_list(const list_t *h)
 {
 	size_t i = 0;
 
@@ -82,11 +82,11 @@ size_t PrintList(const list_t *h)
  * node_starts_with - returns node whose string starts with prefix
  * @node: pointer to list head
  * @prefix: string to match
- * @c: the next chararguement_countter after prefix to match
+ * @c: the next character after prefix to match
  *
  * Return: match node or null
  */
-list_t *node_begins_with(list_t *node, char *prefix, char c)
+list_t *node_starts_with(list_t *node, char *prefix, char c)
 {
 	char *p = NULL;
 
@@ -107,7 +107,7 @@ list_t *node_begins_with(list_t *node, char *prefix, char c)
  *
  * Return: index of node or -1
  */
-ssize_t getNodeIndex(list_t *head, list_t *node)
+ssize_t get_node_index(list_t *head, list_t *node)
 {
 	size_t i = 0;
 

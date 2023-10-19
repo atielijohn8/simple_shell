@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * clear_info - initializes strinput_array_genstruct
+ * clear_info - initializes info_t struct
  * @info: struct address
  */
-void erase_info(strinput_array_gen*info)
+void clear_info(info_t *info)
 {
 	info->arg = NULL;
 	info->argv = NULL;
@@ -13,15 +13,15 @@ void erase_info(strinput_array_gen*info)
 }
 
 /**
- * set_info - initializes strinput_array_genstruct
+ * set_info - initializes info_t struct
  * @info: struct address
- * @arguement_vector: argument vector
+ * @av: argument vector
  */
-void def_info(strinput_array_gen*info, char **arguement_vector)
+void set_info(info_t *info, char **av)
 {
 	int i = 0;
 
-	info->fname = arguement_vector[0];
+	info->fname = av[0];
 	if (info->arg)
 	{
 		info->argv = strtow(info->arg, " \t");
@@ -39,19 +39,19 @@ void def_info(strinput_array_gen*info, char **arguement_vector)
 			;
 		info->argc = i;
 
-		switch_alias(info);
-		switch_vars(info);
+		replace_alias(info);
+		replace_vars(info);
 	}
 }
 
 /**
- * free_info - frees strinput_array_genstruct fields
+ * free_info - frees info_t struct fields
  * @info: struct address
  * @all: true if freeing all fields
  */
-void mem_free_info(strinput_array_gen*info, int all)
+void free_info(info_t *info, int all)
 {
-free_fd(info->argv);
+	ffree(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
 	if (all)
@@ -59,16 +59,16 @@ free_fd(info->argv);
 		if (!info->cmd_buf)
 			free(info->arg);
 		if (info->env)
-			list_free_memory(&(info->env));
+			free_list(&(info->env));
 		if (info->history)
-			list_free_memory(&(info->history));
+			free_list(&(info->history));
 		if (info->alias)
-			list_free_memory(&(info->alias));
-	free_fd(info->environ);
+			free_list(&(info->alias));
+		ffree(info->environ);
 			info->environ = NULL;
-		ptr_free((void **)info->cmd_buf);
-		if (info->readfile_descriptor > 2)
-			close(info->readfile_descriptor);
-		_putchar(BUFFERFLUSH);
+		bfree((void **)info->cmd_buf);
+		if (info->readfd > 2)
+			close(info->readfd);
+		_putchar(BUF_FLUSH);
 	}
 }

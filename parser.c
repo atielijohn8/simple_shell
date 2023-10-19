@@ -7,7 +7,7 @@
  *
  * Return: 1 if true, 0 otherwise
  */
-int CheckIf_FileExec_cmd(strinput_array_gen*info, char *path)
+int is_cmd(info_t *info, char *path)
 {
 	struct stat st;
 
@@ -23,14 +23,14 @@ int CheckIf_FileExec_cmd(strinput_array_gen*info, char *path)
 }
 
 /**
- * dup_chars - duplicates chararguement_countters
+ * dup_chars - duplicates characters
  * @pathstr: the PATH string
  * @start: starting index
  * @stop: stopping index
  *
  * Return: pointer to new buffer
  */
-char *CharDuplication(char *pathstr, int start, int stop)
+char *dup_chars(char *pathstr, int start, int stop)
 {
 	static char buf[1024];
 	int i = 0, k = 0;
@@ -50,16 +50,16 @@ char *CharDuplication(char *pathstr, int start, int stop)
  *
  * Return: full path of cmd if found or NULL
  */
-char *locate_path_dir(strinput_array_gen*info, char *pathstr, char *cmd)
+char *find_path(info_t *info, char *pathstr, char *cmd)
 {
 	int i = 0, curr_pos = 0;
 	char *path;
 
 	if (!pathstr)
 		return (NULL);
-	if ((_stringlength(cmd) > 2) && starts_with(cmd, "./"))
+	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
 	{
-		if (CheckIf_FileExec_cmd(info, cmd))
+		if (is_cmd(info, cmd))
 			return (cmd);
 	}
 	while (1)
@@ -74,7 +74,7 @@ char *locate_path_dir(strinput_array_gen*info, char *pathstr, char *cmd)
 				_strcat(path, "/");
 				_strcat(path, cmd);
 			}
-			if (CheckIf_FileExec_cmd(info, path))
+			if (is_cmd(info, path))
 				return (path);
 			if (!pathstr[i])
 				break;

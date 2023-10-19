@@ -6,7 +6,7 @@
  *
  * Return: integer length of string
  */
-int _stringlength(char *s)
+int _strlen(char *s)
 {
 	int i = 0;
 
@@ -25,7 +25,7 @@ int _stringlength(char *s)
  *
  * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
-int _strcomparision(char *s1, char *s2)
+int _strcmp(char *s1, char *s2)
 {
 	while (*s1 && *s2)
 	{
@@ -41,18 +41,18 @@ int _strcomparision(char *s1, char *s2)
 }
 
 /**
- * starts_with - checks if needle starts with haystarguement_countk
- * @haystarguement_countk: string to search
+ * starts_with - checks if needle starts with haystack
+ * @haystack: string to search
  * @needle: the substring to find
  *
- * Return: address of next char of haystarguement_countk or NULL
+ * Return: address of next char of haystack or NULL
  */
-char *check_start(const char *haystarguement_countk, const char *needle)
+char *starts_with(const char *haystack, const char *needle)
 {
 	while (*needle)
-		if (*needle++ != *haystarguement_countk++)
+		if (*needle++ != *haystack++)
 			return (NULL);
-	return ((char *)haystarguement_countk);
+	return ((char *)haystack);
 }
 
 /**
@@ -62,7 +62,7 @@ char *check_start(const char *haystarguement_countk, const char *needle)
  *
  * Return: pointer to destination buffer
  */
-char *_stringconcatenates(char *dest, char *src)
+char *_strcat(char *dest, char *src)
 {
 	char *ret = dest;
 

@@ -6,7 +6,7 @@
  *          constant function prototype.
  * Return: Always 0
  */
-char **get_environment(strinput_array_gen*info)
+char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_changed)
 	{
@@ -24,7 +24,7 @@ char **get_environment(strinput_array_gen*info)
  *  Return: 1 on delete, 0 otherwise
  * @var: the string env var property
  */
-int _unsetEnvironment(strinput_array_gen*info, char *var)
+int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
 	size_t i = 0;
@@ -38,7 +38,7 @@ int _unsetEnvironment(strinput_array_gen*info, char *var)
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
 		{
-			info->env_changed = DeleteNodeAtIndex(&(info->env), i);
+			info->env_changed = delete_node_at_index(&(info->env), i);
 			i = 0;
 			node = info->env;
 			continue;
@@ -58,7 +58,7 @@ int _unsetEnvironment(strinput_array_gen*info, char *var)
  * @value: the string env var value
  *  Return: Always 0
  */
-int _setEnvironment(strinput_array_gen*info, char *var, char *value)
+int _setenv(info_t *info, char *var, char *value)
 {
 	char *buf = NULL;
 	list_t *node;
@@ -67,7 +67,7 @@ int _setEnvironment(strinput_array_gen*info, char *var, char *value)
 	if (!var || !value)
 		return (0);
 
-	buf = malloc(_stringlength(var) + _stringlength(value) + 2);
+	buf = malloc(_strlen(var) + _strlen(value) + 2);
 	if (!buf)
 		return (1);
 	_strcpy(buf, var);
