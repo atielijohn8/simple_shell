@@ -1,102 +1,44 @@
 #include "shell.h"
 
 /**
- * main - program entry point
- * @ac: arguement count number
- * @av: arguement vector of commands
- * Description: this is the core logic of the program
- * Return: status or exit code
+ * main - entry point
+ *
+ * Return: 0 on success, 1 on error.
  */
-
-int main(int ac, char **av)
+int main(int arguement_count, char **arguement_vector)
 {
-	char *prompt_text = "luken_shell:$ ";
-	char *cmd_Litera = NULL;
-	char *cmdLiteralDuplicate = NULL;
-	size_t Numof_Char = 0;/*interger storing number of tokens in the input*/
-	ssize_t char_Read;
-	const char *delimiter = " \n";
-	int Num_of_tokens = 0;
-	char *token;
-	int i;
-	int Responsive;
+	strinput_array_gen info[] = { INITIALIZTION_DATA };
+	int file_descriptor = 2;
+	
+//**this is assembly code used in interacting with hardware directly*/
 
-	/*this line ignores ac*/
-	(void)ac;
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (file_descriptor)
+		: "r" (file_descriptor));
 
-	/*checks if the program is running Responsive mode by using isatty function*/
-	Responsive = isatty(STDIN_FILENO);
-
-	/*creating infinite loop(input and process)*/
-	while (1)
+	if (arguement_count == 2)
 	{
-		if (Responsive)
+		file_descriptor = open(arguement_vector[1], O_RDONLY);
+		if (file_descriptor == -1)
 		{
-			printf("%s", prompt_text);
-		}
-		/*reading user input using stdin*/
-		char_Read = getline(&cmd_Litera, &Numof_Char, stdin);
-
-		/*error handling*/
-		if (char_Read == -1)
-		{
-			if (feof(stdin))
+			if (error_number == EACCES)
+				exit(126);
+			if (error_number == ENOENT)
 			{
-				printf("\n");
-				return (0);
+				_inputStrPrint(arguement_vector[0]);
+				_inputStrPrint(": 0: Can't open ");
+				_inputStrPrint(arguement_vector[1]);
+				_writechar('\n');
+				_writechar(BUFFERFLUSH);
+				exit(127);
 			}
-
-			perror("getline");
-
-			return (-1);
+			return (EXIT_FAILURE);
 		}
-
-		cmdLiteralDuplicate = malloc(sizeof(char) * (char_Read + 1));
-
-		if (cmdLiteralDuplicate == NULL)
-		{
-			perror("malloc");
-			return (-1);
-		}
-
-		strcpy(cmdLiteralDuplicate, cmd_Litera);
-		token = strtok(cmd_Litera, delimiter);
-
-		while (token != NULL)
-		{
-			Num_of_tokens++;
-			token = strtok(NULL, delimiter);
-		}
-
-		Num_of_tokens++;
-		av = malloc(sizeof(char *) * Num_of_tokens);
-		token = strtok(cmdLiteralDuplicate, delimiter);
-
-		for (i = 0; token != NULL; i++)
-		{
-			av[i] = malloc(sizeof(char) * (strlen(token) + 1));
-			strcpy(av[i], token);
-			token = strtok(NULL, delimiter);
-		}
-		av[i] = NULL;
-		run_Cmd(av);
-
-		for (i = 0; i < Num_of_tokens - 1; i++)
-		{
-			free(av[i]);
-		}
-
-		free(av);
-		free(cmdLiteralDuplicate);
-		free(cmd_Litera);
-		cmd_Litera = NULL;
-		Num_of_tokens = 0;
-
-		if (!Responsive)
-		{
-			return (0);
-		}
+		info->readfile_descriptor = file_descriptor;
 	}
-	return (0);
+	environ_linked_list_popul(info);
+	FileHistory(info);
+	main_shell_loop(info, arguement_vector);
+	return (EXIT_SUCCESS);
 }
-
