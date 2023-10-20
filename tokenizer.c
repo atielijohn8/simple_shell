@@ -2,9 +2,10 @@
 
 /**
  * **tokenizeString - splits a string into words
+ * through delimiter
  * @str: the input string
  * @d: delimeter string
- * Return: a pointer to an array of strings, or NULL on failure
+ * Return: a pointer to an array of strings/ NULL on failure
  */
 
 char **tokenizeString(char *str, char *d)
@@ -49,10 +50,11 @@ char **tokenizeString(char *str, char *d)
 }
 
 /**
- * **tokenizeString_Opt2 - splits a string to words
- * @str: the input string
- * @d: the delimet
- * Return: a pointer to an array of strings, or NULL on failure
+ * **tokenizeString_Opt2 - splits a string to words using
+ * delimeter
+ * @str:  string
+ * @d:  delimet
+ * Return: a pointer to an array of strings/NULL on failure
  */
 char **tokenizeString_Opt2(char *str, char d)
 {

@@ -1,14 +1,16 @@
 #include "shell.h"
 
 /**
- * main - entry point
- * @ac: arg count
- * @av: arg vector
+ * main - entry point the simple
+ * shell program
+ * @ac: ac
+ * @av: av
  *
  * Return: 0 on success, 1 on error
  */
 int main(int ac, char **av)
 {
+	/* Define an array of ShellInformation structures, initialize to INFO_INIT*/
 	ShellInformation info[] = { INFO_INIT };
 	int fd = 2;
 

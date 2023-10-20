@@ -2,9 +2,9 @@
 
 /**
  * access_History - show hist list
- *              with line numbers, starting at 0.
+ *              with line numbers starting at 0.
  * @info: Structure containing possible arguments. Used to maintain
- *        constant function prototype.
+ *        const function prototypes.
  *  Return: Always 0
  */
 int access_History(ShellInformation *info)
@@ -38,8 +38,8 @@ int unset_alias(ShellInformation *info, char *str)
 
 /**
  * set_alias - sets alias to be string
- * @info: p struct
- * @str: the string alias
+ * @info:  struct
+ * @str: string alias
  *
  * Return:  0 on success, 1 on error
  */
@@ -59,7 +59,7 @@ int set_alias(ShellInformation *info, char *str)
 
 /**
  * print_alias - prints  alias string
- * @node: the alias node
+ * @node: mode to alias
  *
  * Return:  0 on success, 1 on error
  */
@@ -83,7 +83,7 @@ int print_alias(list_t *node)
 /**
  * aliasCommand - immmitates the alias builtin (man alias)
  * @info: Structure containing possible arguments. Used to maintain
- *          constant function prototype.
+ *          const function prototypes.
  *  Return: (0)
  */
 int aliasCommand(ShellInformation *info)

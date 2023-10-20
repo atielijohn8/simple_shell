@@ -3,9 +3,9 @@
 /**
  * get_environ - return string of array to env
  * @info: Structure containing possible argument
- *          constant function prototype.
+ *          const function prototype.
  *
- * Return: Always 0
+ * Return: Always (0)
  */
 char **get_environ(ShellInformation *info)
 {
@@ -20,9 +20,9 @@ char **get_environ(ShellInformation *info)
 
 /**
  * _unsetenv - delete an environment variable
- * @info: Structure containing potential arguments. Used to maintain
+ * @info: Structure containing possible arguments. Used to maintain
  *        cons function prototype.
- *  Return: 1delete, 0 otherwise
+ *  Return: (1)delete, (0) otherwise
  * @var: the string env var property
  */
 int _unsetenv(ShellInformation *info, char *var)
@@ -52,9 +52,9 @@ int _unsetenv(ShellInformation *info, char *var)
 
 /**
  *  _setenv- Initialize  new environment var
- *             or modify an existing one
+ *             or modify existing one
  * @info: Structure containing  arguments.
- *        constant function prototype.
+ *        const func prototype.
  * @var:  string env var property
  * @value:  string env var value
  *  Return: Always 0

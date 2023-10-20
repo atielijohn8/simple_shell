@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- **make_memset - check mem
+ *make_memset - check mem
  *@s: the pointer, memory area
- *@b: the byte to fill *s with
+ *@b:  byte to fill *s with
  *@n: amount of bytes to be filled
  *
- *Return: (s) a pointer to the memory area s
+ *Return: s a pointer to the memory area s
  */
 char *make_memset(char *s, char b, unsigned int n)
 {
@@ -18,8 +18,8 @@ char *make_memset(char *s, char b, unsigned int n)
 }
 
 /**
- * freeMemory - frees a string of strings
- * @pp: string of strings
+ * freeMemory - frees a string ,strings
+ * @pp: Pointer to the array of strings.
  */
 void freeMemory(char **pp)
 {
@@ -33,12 +33,12 @@ void freeMemory(char **pp)
 }
 
 /**
- * resize_Memory - reallocates, a block of memory
- * @ptr: pointer to previous malloc'ated block
+ * resize_Memory - Adjusts the size of a previously allocated block of memory.
+ * @ptr:  Pointer to the previously allocated block.
  * @old_size: byte size of previous block
  * @new_size: byte size ,of new block
  *
- * Return: pointer to da ol'block nameen.
+ * Return: Pointer to the original block. If reallocation fails, returns NULL.
  */
 void *resize_Memory(void *ptr, unsigned int old_size, unsigned int new_size)
 {

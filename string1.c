@@ -1,11 +1,12 @@
 #include "shell.h"
 
 /**
- * copy_String - copies a string
- * @dest: the destination
- * @src: the source
+ * copy_String - string copy
+ * @dest:  destination
+ * @src: source string
  *
  * Return: pointer to destination
+ * of the string
  */
 char *copy_String(char *dest, char *src)
 {
@@ -24,9 +25,9 @@ char *copy_String(char *dest, char *src)
 
 /**
  * duplicate_String - duplicates a string
- * @str: the string to duplicate
+ * @str: string to duplicate
  *
- * Return: pointer to the duplicated string
+ * Return: pointer of the duplicated string
  */
 char *duplicate_String(const char *str)
 {
@@ -46,8 +47,8 @@ char *duplicate_String(const char *str)
 }
 
 /**
- *print_String - prints an input string
- *@str: the string to be printed
+ *print_String - prints input string
+ *@str: string to be printed
  *
  * Return: Nothing
  */
@@ -65,11 +66,11 @@ void print_String(char *str)
 }
 
 /**
- * put_Character - writes the character 
- * @c: The character to print
+ * put_Character - writes the char to stdout
+ * @c:  character to print
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: success (1).
+ * On success, 1. On error, -1 is returned, and errno is set appropriately.
  */
 int put_Character(char c)
 {

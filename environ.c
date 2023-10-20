@@ -3,7 +3,7 @@
 /**
  * manageEnvironment - print current environment
  * @info: Structure containing possible arguments. Used to maintain
- *          constant function prototype.
+ *          const function prototypes.
  * Return: Always 0
  */
 int manageEnvironment(ShellInformation *info)
@@ -38,7 +38,7 @@ char *getEnvironmentVariable(ShellInformation *info, const char *name)
  * setEnvironmentVariable - Initialize a new environment variable,
  *             or modify an existing one
  * @info: Structure containing possible arguments. that maintain
- *        constant function prototype.
+ *        const function prototypes.
  *
  *  Return:  0
  */
@@ -77,9 +77,9 @@ int unsetEnvironmentVariable(ShellInformation *info)
 }
 
 /**
- * populate_EnvironmentList - populates environ linked list
+ * populate_EnvironmentList - populates environ l list
  * @info: Structure containing possible arguments. Used to maintain
- *          constant function prototype.
+ *          const function prototypes.
  * Return:  0
  */
 int populate_EnvironmentList(ShellInformation *info)

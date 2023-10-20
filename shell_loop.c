@@ -2,7 +2,7 @@
 
 /**
  *  customShellMain - main shell loop
- * @info: the parameter & return info struct
+ * @info: Pointer to parameter and return info struct
  * @av: the argument vector from main()
  *
  * Return: 0 on success, 1 on error, or error code
@@ -44,10 +44,10 @@ int  customShellMain(ShellInformation *info, char **av)
 }
 
 /**
- * findBuiltinCommand - finds  builtin command
- * @info: the parameter & return info struct
+ * findBuiltinCommand - lacates a builtin command
+ * @info: Pointer to parameter and return info struct.
  *
- * Return: -1  builtin not found,
+ * Return: -1 builtin not found,
  *			0  builtin executed successfully,
  *			1  builtin found but not successful,
  *			-2  builtin signals exit()
@@ -79,7 +79,7 @@ int findBuiltinCommand(ShellInformation *info)
 
 /**
  *  findExecutableCommand - finds a comd in PATH
- * @info: the parameter & return info struct
+ * @info:parameter pointer  & return info struct
  *
  * Return: void
  */
@@ -121,7 +121,7 @@ void  findExecutableCommand(ShellInformation *info)
 
 /**
  * executeCommand - forks a an exec thread to run command
- * @info: the parameter & return info struct
+ * @info: the parameter pointer & return info struct
  *
  * Return: void
  */

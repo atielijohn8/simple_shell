@@ -34,7 +34,7 @@ char *copy_N_Characters(char *dest, char *src, int n)
  **concatenate_N_Characters - concatenates 2 strings
  *@dest: the 1 string
  *@src: the 2cstring
- *@n: the amount of bytes to be used maximally used
+ *@n: the amount of bytes used maximally used
  *Return:  concatenated string
  */
 char *concatenate_N_Characters(char *dest, char *src, int n)
@@ -60,7 +60,7 @@ char *concatenate_N_Characters(char *dest, char *src, int n)
 /**
  **findFirst_Occurrence - locates string
  *@s: the string to be parsed to
- *@c: the character to look for
+ *@c: the character to be  looked for
  *Return: pointer to memory
  */
 char *findFirst_Occurrence(char *s, char c)

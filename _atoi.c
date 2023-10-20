@@ -1,7 +1,8 @@
 #include "shell.h"
 
 /**
- * process_Interactive_Mode - returns true if  process_Interactive_Mode mode
+ * process_Interactive_Mode - returns true if
+ *   process_Interactive_Mode mode
  * @info:  at struct address
  *
  * Return: (1 ) process_Interactive_Mode mode (0)otherwise
@@ -28,7 +29,7 @@ int is_Delimiter(char c, char *delim)
 
 /**
  *_isalpha - for checking  alphabetic character
- *@c: The character to input
+ *@c:  character to the input
  *Return: 1 if alphabetic, 0 otherwise
  */
 
@@ -41,9 +42,9 @@ int _isalpha(int c)
 }
 
 /**
- *_atoi - converts a string to an int.
+ *_atoi - string converstion to interger
  *@s: string to be converted
- *Return: 0 if there is no number
+ *Return: 0 if no number
  */
 
 int _atoi(char *s)

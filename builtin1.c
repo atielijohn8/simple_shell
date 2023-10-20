@@ -2,11 +2,11 @@
 
 /**
  * exit_Custom_Shell - exits  shell
- * @info: Structure containing potential arguments.
+ * @info: Structure containing possible arguments.
  *        used in shell
  *          constant function prototype.
- *  Return: exits with a given exit status
- *         (0)info,argv[0] != "exit"
+ *  Return: exits accordint to the given  status
+ *         (0)info,av[0] != "exit"
  */
 int exit_Custom_Shell(ShellInformation *info)
 {
@@ -82,9 +82,9 @@ int changeDirectory(ShellInformation *info)
 }
 
 /**
- * displayHelp - changes the current directory of the process
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * displayHelp - changes the current directory of the running  process
+ * @info: Structure containing possible arguments. Used to maintain
+ *          const function prototypes.
  *  Return: Always 0
  */
 int displayHelp(ShellInformation *info)

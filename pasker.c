@@ -23,7 +23,8 @@ int isBuiltinCommand(ShellInformation *info, char *path)
 }
 
 /**
- * duplicateCharacters - duplicates characters
+ * duplicateCharacters - duplicates characters 
+ * from pathstr
  * @pathstr:  PATH string
  * @start: starting index
  * @stop: stopping index
@@ -44,17 +45,18 @@ char *duplicateCharacters(char *pathstr, int start, int stop)
 
 /**
  * findExecutablePath - finds this command in the PATH string
- * @info: the info struct
+ * @info:Pointer to the ShellInformation struct.
  * @pathstr: the PATH string
  * @cmd: the commandto find
  *
- * Return: full path of cmd if found or NULL
+ * Return: Full path of cmd if found, otherwise NULL.
  */
 char *findExecutablePath(ShellInformation *info, char *pathstr, char *cmd)
 {
 	int i = 0, curr_pos = 0;
 	char *path;
 
+	/*Handle edge case when 'pathstr' is NULL*/
 	if (!pathstr)
 		return (NULL);
 	if ((string_Length(cmd) > 2) && starts_With(cmd, "./"))

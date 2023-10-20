@@ -2,7 +2,7 @@
 
 /**
  *printError_Message - prints the input string
- * @str: the string to be printed
+ * @str: string to be printed
  *
  * Return: Nothing
  */
@@ -20,9 +20,9 @@ void printError_Message(char *str)
 }
 
 /**
- * printCharacter - writes the character c to stder
+ * printCharacter - writes the character  to stder
  *                   output
- * @c: The character to print
+ * @c:  character to print
  *
  * Return: success 1.
  * On error, -1 
@@ -45,7 +45,7 @@ int printCharacter(char c)
 /**
  *  putCharacter_To_File - writes the character c to given file descripter
  * @c: The char to print
- * @fd: The filedescriptor to write to
+ * @fd: The fd to write to
  *
  * Return: On success 1.
  * On error, -1 is returned

@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * _erratoi - converts  string to an integer
+ * _erratoi - converts  string to an int
  * @s: the string which is converted
- * Return: 0 if no numbers in string, converted number otherwise
+ * Return: (0)no numbers in string, converted number otherwise
  *
- *       -1 on error
+ *       (-1)error
  */
 int _erratoi(char *s)
 {
@@ -33,9 +33,9 @@ int _erratoi(char *s)
  * print_error - prints error message
  * @info: the parameter and return info struct
  * @estr: string storing  specified error type
- * Return: 0 sucess
+ * Return: (0) sucesses
  *
- *        -1 on error
+ *        (-1) error
  */
 void print_error(ShellInformation *info, char *estr)
 {

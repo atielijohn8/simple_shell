@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * getHistoryFile -  history file
+ * getHistoryFile -  retrives history file
  * @info: parameter struct
  *
- * Return: allocated string containg his file
+ * Return: allocates string containg hist file
  */
 
 char *getHistoryFile(ShellInformation *info)
@@ -28,7 +28,7 @@ char *getHistoryFile(ShellInformation *info)
  * write_history - creates a file
  * @info: the parameter struct
  *
- * Return: 1  success, else -1
+ * Return: (1)  success, else (-1)
  */
 int write_history(ShellInformation *info)
 {
@@ -57,7 +57,7 @@ int write_history(ShellInformation *info)
  * read_history - reads hisfrom file
  * @info:  struct
  *
- * Return: histcount success, 0 otherwise
+ * Return: histcount (success), (0) otherwise
  */
 int read_history(ShellInformation *info)
 {
@@ -103,7 +103,7 @@ int read_history(ShellInformation *info)
 }
 
 /**
- * build_history_list - adds entry to a history 
+ * build_history_list - adds entry to a history l list
  * @info: Structure containing possible arguments. 
  * @buf: buffer
  *
@@ -127,7 +127,8 @@ int build_history_list(ShellInformation *info, char *buf, int linecount)
 /**
  * renumberHistory - renumbers the history linked list after changes
  *                   take place
- * @info: Structure containing potential arguments. Used to maintain
+ * @info: Structure containing possible  arguments. Used to maintain
+ * shell
  *
  * Return: the new histcount
  */
