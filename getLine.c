@@ -67,7 +67,8 @@ ssize_t get_input(ShellInformation *info)
 		p = buf + i; 
 
 		check_chain(info, buf, &j, i, len);
-		while (j < len) 
+		while (j < len)
+		{ 
 			if (isCommandChaining(info, buf, &j))
 				break;
 			j++;
