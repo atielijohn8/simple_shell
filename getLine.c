@@ -68,6 +68,7 @@ ssize_t get_input(ShellInformation *info)
 
 		check_chain(info, buf, &j, i, len);
 		while (j < len) 
+		{
 			if (isCommandChaining(info, buf, &j))
 				break;
 			j++;
@@ -90,7 +91,7 @@ ssize_t get_input(ShellInformation *info)
 
 /**
  * read_buf - reads a buffer
- * @info: parameter struct
+ * @info: struct
  * @buf: buffer
  * @i: size
  *
@@ -111,8 +112,8 @@ ssize_t read_buf(ShellInformation *info, char *buf, size_t *i)
 /**
  * _getline - gets the next line of input 
  * @info:  struct
- * @ptr: address  pointer to buffer, preallocated or NULL
- * @length: size  preallocated ptr buffer if not NULL
+ * @ptr: address  pointer to buffer,  NULL
+ * @length: size  preallocated ptr hence no null
  *
  * Return: s
  */
@@ -159,7 +160,7 @@ int _getline(ShellInformation *info, char **ptr, size_t *length)
  * handleSignalInterrupt - blocks 
  * @sig_num: the signal number
  *
- * Return: void
+ * Return: nothing
  */
 void handleSignalInterrupt(__attribute__((unused))int sig_num)
 {
